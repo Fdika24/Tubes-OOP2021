@@ -8,6 +8,8 @@ public class MonsterModel {
     private Stats stats;
     private List<Move> moves;
 
+    //TODO: CREATE MONSTER STATUS CONDITION
+
     public String getName() {
         return  this.name;
     }
