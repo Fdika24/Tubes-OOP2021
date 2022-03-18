@@ -17,6 +17,11 @@ public class MainView extends UIViewController {
     protected void viewDidLoad() {
         super.viewDidLoad();
         System.out.println("View has been loaded...");
+        System.out.println("Welcome to Piku Monsters!");
+        System.out.println("Menus : ");
+        System.out.println("1. Start Game");
+        System.out.println("2. Start Game");
+        System.out.println("3. Exit Game");
     }
 
     // called when you pop the view
@@ -31,6 +36,10 @@ public class MainView extends UIViewController {
     protected void viewDidFinnish() {
         super.viewDidFinnish();
         System.out.println("View has been removed from stack...");
+    }
+
+    private void didSelectExitGame() {
+        System.out.println("Thank you for playing!");
     }
 }
 
