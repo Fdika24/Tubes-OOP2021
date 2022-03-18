@@ -5,6 +5,12 @@ Tubes OOP
 - minimum jdk : open java jdk 8.0
 - minimum java version : 8.0
 
+## Architecture
+Model View ViewModel
+View : Place to display something
+Model : For data only
+ViewModel : State , data storage, and logic
+
 ## IMPORTANT NOTES
  - Selalu nge branch dari development, jangan dari master/main
  - Penamaan wajib dev/[yang dikerjakan], ex : dev/monster-skills
