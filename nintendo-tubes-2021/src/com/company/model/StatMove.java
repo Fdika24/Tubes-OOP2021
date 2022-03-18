@@ -1,4 +1,4 @@
-package com.company.rootFolder.model;
+package com.company.model;
 
 //TODO : WIP
 public class StatMove extends Move{

@@ -1,4 +1,4 @@
-package com.company.rootFolder.model;
+package com.company.model;
 
 public class Element {
     public final ElementType type;

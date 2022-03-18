@@ -1,4 +1,4 @@
-package com.company.rootFolder.model;
+package com.company.model;
 
 public class Move {
     public final String name;
