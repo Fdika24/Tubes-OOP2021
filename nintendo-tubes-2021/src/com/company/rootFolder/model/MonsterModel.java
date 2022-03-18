@@ -6,6 +6,7 @@ public class MonsterModel {
     private String name;
     private List<Element> elements;
     private Stats stats;
+    private List<Move> moves;
 
     public String getName() {
         return  this.name;
@@ -14,9 +15,14 @@ public class MonsterModel {
         this.name = newName;
     }
 
-    public  MonsterModel (String name,List<Element> elements, Stats stats ) {
+    public  MonsterModel (
+            String name,List<Element> elements,
+            Stats stats,
+            List<Move> moves
+            ) {
         this.name = name;
         this.elements = elements;
         this.stats = stats;
+        this.moves = moves;
     }
 }
