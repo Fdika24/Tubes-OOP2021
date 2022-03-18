@@ -24,6 +24,7 @@ public class Alchu extends MonsterModel {
     @Override
     protected void setMoves() {
         this.addMove(new Move(
+                1,
                 "Kick", ElementType.NORMAL,
                 100,
                 1,
