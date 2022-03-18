@@ -1,4 +1,4 @@
-package com.company.rootFolder.model;
+package com.company.model;
 
 public class Stats {
     private double healthPoint;
@@ -41,5 +41,15 @@ public class Stats {
 
     public void decreaseHp(double value) {
         this.healthPoint -= value;
+    }
+
+    public void showStatsInfo(){
+        System.out.println("Stats : ");
+        System.out.println("Health point : " + this.healthPoint);
+        System.out.println("Attack point : " + this.attackPoint);
+        System.out.println("Defense point : " + this.defensePoint);
+        System.out.println("Special Attack point : " + this.specialAttackPoint);
+        System.out.println("Special Defense point : " + this.specialDefensePoint);
+        System.out.println("Speed point : " + this.speedPoint);
     }
 }

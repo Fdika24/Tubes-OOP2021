@@ -1,24 +1,17 @@
 package com.company;
 
 import com.company.extention.UIViewController;
-import com.company.rootFolder.model.Element;
-import com.company.rootFolder.model.ElementType;
+import com.company.model.Element;
+import com.company.model.ElementType;
 
 import java.util.HashMap;
 
-import java.util.Scanner;
-
 public class MainView extends UIViewController {
 
-    private HashMap<ElementType, Element> elementList = new HashMap<ElementType, Element>();
     // called when initializing view
     @Override
     protected void loadView() {
         super.loadView();
-        elementList.put(ElementType.FIRE, new Element(
-                ElementType.FIRE,
-                ElementType.GRASS,
-                1));
         System.out.println("Loading view...");
     }
 
