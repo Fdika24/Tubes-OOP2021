@@ -1,6 +1,9 @@
 # Tubes-OOP2021
 Tubes OOP
-# Git Tutorial
+## Requirements
+- Intellij IDE
+- minimum jdk : open java jdk 8.0
+- minimum java version : 8.0
 
 ## IMPORTANT NOTES
  - Selalu nge branch dari development, jangan dari master/main
