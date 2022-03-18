@@ -10,11 +10,16 @@ public class Player {
     private int useMonster = 0;
     public Player() {
         this.monsters.add(new Alchu());
+        this.monsters.add(new Alchu());
     }
     public List<MonsterModel> getMonsters() {
         return  this.monsters;
     }
     public void setUseMonster(int use){
+        if (use > monsters.size()) { // next condition is when monster is dead
+            System.out.println("Cannot use monster");
+            return;
+        }
         this.useMonster = use;
     }
     public MonsterModel getMonster() {

@@ -31,10 +31,7 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         while (gameGoing) {
             viewModel.showMenu();
         }
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter username");
-
-        String userName = myObj.nextLine();  // Read user input
+        this.navigationController.popToRootView();
     }
 
     public void setViewModel(GameViewModel viewModel) {
@@ -45,10 +42,27 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     public void didTapShowMenu() {
         System.out.println("Menu.....");
         System.out.println("1. Show Monsters");
-        /*
-        1. apa
-        2. apa
-        3. apa
-         */
+        System.out.println("2. Show current monster");
+        System.out.println("3. Switch Monster");
+        System.out.println("4. Move");
+        System.out.println("5. End turn");
+        Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Select option :");
+
+        int selection = scan.nextInt();  // Read user input
+        if (selection == 1){
+            viewModel.showPlayerMonsters();
+            viewModel.showMenu();
+        } else if (selection == 2){
+            viewModel.showPlayerCurrentMonster();
+            viewModel.showMenu();
+        } else if (selection == 3){
+            viewModel.switchMonster();
+        } else if (selection == 4){
+            viewModel.switchMonster();
+        } else {
+            this.gameGoing = false;
+        }
+
     }
 }

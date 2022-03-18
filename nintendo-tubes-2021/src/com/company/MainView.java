@@ -1,10 +1,12 @@
 package com.company;
 
+import com.company.Presentation.game.view.GameView;
 import com.company.extention.UIViewController;
 import com.company.model.Element;
 import com.company.model.ElementType;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class MainView extends UIViewController {
 
@@ -25,6 +27,17 @@ public class MainView extends UIViewController {
         System.out.println("1. Start Game");
         System.out.println("2. Start Game");
         System.out.println("3. Exit Game");
+
+        Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Select option :");
+
+        int selection = scan.nextInt();
+        if (selection == 1) {
+            UIViewController gameView = new GameView();
+            this.navigationController.pushView(gameView);
+        } else {
+            this.didSelectExitGame();
+        }
     }
 
     // called when you pop the view
