@@ -12,6 +12,14 @@ public class Player {
         this.monsters.add(new Alchu());
         this.monsters.add(new Alchu());
     }
+    public int getAvailMonster() {
+        for(int i = 0; i < monsters.size();i++){
+            if (monsters.get(i).getMonsterState() == MonsterState.ALIVE){
+                return i;
+            }
+        }
+        return -1;
+    }
     public List<MonsterModel> getMonsters() {
         return  this.monsters;
     }

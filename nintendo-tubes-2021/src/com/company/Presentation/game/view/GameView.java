@@ -59,10 +59,16 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         } else if (selection == 3){
             viewModel.switchMonster();
         } else if (selection == 4){
-            viewModel.switchMonster();
+            viewModel.attackMonster();
         } else {
             this.gameGoing = false;
         }
 
+    }
+
+    @Override
+    public void didAllMonstersDead() {
+        System.out.println("You have lost!");
+        this.gameGoing = false;
     }
 }

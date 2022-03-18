@@ -2,10 +2,6 @@ package com.company;
 
 import com.company.Presentation.game.view.GameView;
 import com.company.extention.UIViewController;
-import com.company.model.Element;
-import com.company.model.ElementType;
-
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class MainView extends UIViewController {

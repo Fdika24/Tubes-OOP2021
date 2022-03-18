@@ -2,8 +2,11 @@ package com.company.Presentation.game.viewModel;
 
 import com.company.Presentation.game.view.GameView;
 import com.company.model.MonsterModel;
+import com.company.model.MonsterState;
 import com.company.model.Player;
+import com.company.model.Stats;
 import com.company.model.monsters.Alchu;
+import java.util.Random;
 
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class GameViewModel {
         view.setViewModel(vm);
     }
     private GameViewModelOutput output;
+    Random rand = new Random();
 
     public GameViewModel() {
 
@@ -45,8 +49,30 @@ public class GameViewModel {
     }
 
     public void attackMonster() {
-        //this.player.getMonster();
+        Stats monsterStats = this.player.getMonster().getMonsterStats();
+        Stats enemyStats = this.enemy.getMonsterStats();
+        System.out.println("Enemy " + enemy.getName() + " health point : " + enemy.getMonsterStats().getHP() );
+        //TODO: ADD ELEMENT EFFECTIVENESS
+        double damage = (100 * (monsterStats.getAttackPoint() / enemyStats.getDefensePoint()) + 2) * rand.nextDouble();
+        enemy.didTakeDamage(damage);
+        if (enemy.getMonsterState() == MonsterState.DEAD){
+            this.monsterIsDead();
+            return;
+        }
+        System.out.println("Enemy " + enemy.getName() + " health point : " + enemy.getMonsterStats().getHP() );
     }
+
+    private void monsterIsDead() {
+        System.out.println("Seems like your monster is dead...");
+        this.output.didAllMonstersDead();
+//        int avail = player.getAvailMonster();
+//        if (avail == -1){
+//            this.output.didAllMonstersDead();
+//            return;
+//        }
+//        player.setUseMonster(avail);
+    }
+
     public void showMenu() {
         this.output.didTapShowMenu();
     }

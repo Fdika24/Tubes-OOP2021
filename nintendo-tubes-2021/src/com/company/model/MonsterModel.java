@@ -61,4 +61,17 @@ public abstract class MonsterModel {
         this.showMonsterMoves();
         this.stats.showStatsInfo();
     }
+
+    //MARK: GET STATS
+    public Stats getMonsterStats() {
+        return this.stats;
+    }
+
+    //MARK: TAKE DAMAGE
+    public void didTakeDamage(double damage){
+        this.stats.decreaseHp(damage);
+        if (this.stats.getHP() <= 0){
+            this.state = MonsterState.DEAD;
+        }
+    }
 }
