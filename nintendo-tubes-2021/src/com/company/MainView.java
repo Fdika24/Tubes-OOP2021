@@ -17,14 +17,6 @@ public class MainView extends UIViewController {
     protected void viewDidLoad() {
         super.viewDidLoad();
         System.out.println("View has been loaded...");
-        SecView view = new SecView();
-        System.out.printf("Pilihan  : ");
-        int scan = new Scanner(System.in).nextInt();
-        if (scan == 1){
-            this.navigationController.pushView(view);
-        } else {
-            this.navigationController.popView();
-        }
     }
 
     // called when you pop the view

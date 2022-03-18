@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class UIViewController  {
 
-    public UINavigationController navigationController; //= new UINavigationController();
+    public UINavigationController navigationController;
 
     /*
         what        :
