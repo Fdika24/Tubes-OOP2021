@@ -7,9 +7,6 @@ import com.company.model.moveModel.MoveType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner;
 
 //@author Farhandika-1822015
 
@@ -54,10 +51,23 @@ public class SkillsConfiguration {
         }
     }
 
-    public void loadMoveFromConfig(){
+
+    private void loadMoveFromConfig(){
         List<String> datas = LoadConfiguration.loadConfig("skillConfig.csv");
-        for (String data: datas ){
-            System.out.println(data);
+        String[] temp;
+        for (String data:datas){
+            temp = data.split(";");
+            Move tempMove = new Move(
+                    Integer.parseInt(temp[0]),
+                    this.toMoveType(temp[1]),
+                    temp[2],
+                    this.toElementType(temp[3]),
+                    Integer.parseInt(temp[4]),
+                    Integer.parseInt(temp[4]),
+                    Integer.parseInt(temp[5]),
+                    this.toTarget(temp[6])
+            );
+            this.listOfMoves.add(tempMove);
         }
     }
     //TODO: ADD EXCEPTION HANDLER

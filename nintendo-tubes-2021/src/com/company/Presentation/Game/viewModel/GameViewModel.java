@@ -1,6 +1,6 @@
-package com.company.Presentation.game.viewModel;
+package com.company.Presentation.Game.viewModel;
 
-import com.company.Presentation.game.view.GameView;
+import com.company.Presentation.Game.view.GameView;
 import com.company.model.monsters.MonsterModel;
 import com.company.model.monsters.MonsterState;
 import com.company.model.Player;

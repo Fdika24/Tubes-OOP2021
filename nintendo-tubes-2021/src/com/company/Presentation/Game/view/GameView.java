@@ -1,10 +1,12 @@
-package com.company.Presentation.game.view;
+package com.company.Presentation.Game.view;
 
-import com.company.Presentation.game.viewModel.GameViewModel;
-import com.company.Presentation.game.viewModel.GameViewModelOutput;
+import com.company.Presentation.Game.viewModel.GameViewModel;
+import com.company.Presentation.Game.viewModel.GameViewModelOutput;
 import com.company.extention.UIViewController;
 import com.company.model.Element;
 import com.company.model.ElementType;
+import com.company.utilities.MonsterConfiguration;
+import com.company.utilities.SkillsConfiguration;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,6 +19,11 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     @Override
     protected void loadView() {
         super.loadView();
+        // load monsters from csv file
+        MonsterConfiguration.shared.start();
+        // load skills from csv file
+        SkillsConfiguration.shared.start();
+
         GameViewModel.config(this);
         elementList.put(ElementType.FIRE, new Element(
                 ElementType.FIRE,
