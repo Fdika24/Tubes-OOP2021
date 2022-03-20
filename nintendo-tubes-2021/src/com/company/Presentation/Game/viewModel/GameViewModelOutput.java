@@ -1,4 +1,4 @@
-package com.company.Presentation.game.viewModel;
+package com.company.Presentation.Game.viewModel;
 
 public interface GameViewModelOutput {
     public void didTapShowMenu();

@@ -1,9 +1,12 @@
-package com.company.model;
+package com.company.model.monsters;
+
+import com.company.model.ElementType;
+import com.company.model.moveModel.Move;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MonsterModel {
+public class MonsterModel {
     private final String name;
     private List<ElementType> elements;
     private Stats stats;
@@ -26,6 +29,10 @@ public abstract class MonsterModel {
         this.moves = new ArrayList<Move>();
     }
 
+    //MARK :
+    public List<ElementType> getElements() {
+        return this.elements;
+    }
     //MARK: ADD ELEMENT TO A MONSTER
     public void addElement(ElementType type){
         this.elements.add(type);
@@ -39,8 +46,12 @@ public abstract class MonsterModel {
     public MonsterState getMonsterState() {
         return this.state;
     }
-    protected abstract void setElements();
-    protected abstract void setMoves();
+    protected  void setElements(){
+
+    };
+    protected  void setMoves(){
+
+    };
 
     //MARK: SHOW MONSTER MOVES
     public void showMonsterMoves() {

@@ -1,7 +1,9 @@
-package com.company;
+package com.company.Presentation.Main;
 
-import com.company.Presentation.game.view.GameView;
+import com.company.Presentation.Game.view.GameView;
 import com.company.extention.UIViewController;
+import com.company.utilities.SkillsConfiguration;
+
 import java.util.Scanner;
 
 public class MainView extends UIViewController {
