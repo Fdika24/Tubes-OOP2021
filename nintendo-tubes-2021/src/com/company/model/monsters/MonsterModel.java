@@ -78,6 +78,8 @@ public class MonsterModel {
         return this.stats;
     }
 
+    //MARK : GET HP
+
     //MARK: TAKE DAMAGE
     public void didTakeDamage(double damage){
         this.stats.decreaseHp(damage);
