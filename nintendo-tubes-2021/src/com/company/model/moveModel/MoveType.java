@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.model.moveModel;
 
 public enum MoveType {
     NORMAL,

@@ -1,4 +1,7 @@
-package com.company.model;
+package com.company.model.monsters;
+
+import com.company.model.ElementType;
+import com.company.model.moveModel.Move;
 
 import java.util.ArrayList;
 import java.util.List;

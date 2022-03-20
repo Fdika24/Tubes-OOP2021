@@ -2,6 +2,8 @@ package com.company;
 
 import com.company.Presentation.game.view.GameView;
 import com.company.extention.UIViewController;
+import com.company.utilities.SkillsConfiguration;
+
 import java.util.Scanner;
 
 public class MainView extends UIViewController {
@@ -11,6 +13,7 @@ public class MainView extends UIViewController {
     protected void loadView() {
         super.loadView();
         System.out.println("Loading view...");
+        SkillsConfiguration.shared.start();
     }
 
     // called after you're done initializing the view

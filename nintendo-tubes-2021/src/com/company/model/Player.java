@@ -1,6 +1,8 @@
 package com.company.model;
 
 import com.company.model.monsters.Alchu;
+import com.company.model.monsters.MonsterModel;
+import com.company.model.monsters.MonsterState;
 
 import java.util.ArrayList;
 import java.util.List;
