@@ -16,7 +16,7 @@ public class ElementConfiguration {
     }
 
     public void start() {
-        System.out.println(this.elements.get(ElementType.FIRE).type);
+        System.out.println("Elements capabilities has been added to the system");
     }
 
     private ElementType toElementType(String str){

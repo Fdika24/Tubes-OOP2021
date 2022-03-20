@@ -5,6 +5,7 @@ import com.company.Presentation.Game.viewModel.GameViewModelOutput;
 import com.company.extention.UIViewController;
 import com.company.model.Element;
 import com.company.model.ElementType;
+import com.company.utilities.ElementConfiguration;
 import com.company.utilities.MonsterConfiguration;
 import com.company.utilities.SkillsConfiguration;
 
@@ -19,10 +20,12 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     @Override
     protected void loadView() {
         super.loadView();
-        // load monsters from csv file
-        MonsterConfiguration.shared.start();
         // load skills from csv file
         SkillsConfiguration.shared.start();
+        // load monsters from csv file
+        MonsterConfiguration.shared.start();
+        //load element from csv
+        ElementConfiguration.shared.start();
 
         GameViewModel.config(this);
         elementList.put(ElementType.FIRE, new Element(
@@ -34,6 +37,7 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     @Override
     protected void viewDidLoad() {
         super.viewDidLoad();
+        System.out.println("Game Start!");
         viewModel.showPlayerMonsters();
         while (gameGoing) {
             viewModel.showMenu();

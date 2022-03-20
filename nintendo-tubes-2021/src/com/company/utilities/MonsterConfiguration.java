@@ -14,11 +14,6 @@ public class MonsterConfiguration {
     private List<MonsterModel> listOfMonster = new ArrayList<MonsterModel>();
 
     public void start() {
-        for (MonsterModel monster : listOfMonster){
-            System.out.println(monster.getName());
-            System.out.println(monster.getElements());
-            monster.showMonsterMoves();
-        }
         System.out.println("Monsters has been added to the system");
     }
     public MonsterConfiguration() {

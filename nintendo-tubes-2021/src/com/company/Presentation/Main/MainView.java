@@ -13,7 +13,6 @@ public class MainView extends UIViewController {
     protected void loadView() {
         super.loadView();
         System.out.println("Loading view...");
-        SkillsConfiguration.shared.start();
     }
 
     // called after you're done initializing the view
