@@ -1,6 +1,6 @@
 package com.company.rootFolder;
 
-import com.company.MainView;
+import com.company.Presentation.Main.MainView;
 import com.company.extention.UINavigationController;
 import com.company.extention.UIViewController;
 
