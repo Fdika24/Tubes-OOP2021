@@ -55,37 +55,9 @@ public class SkillsConfiguration {
     }
 
     public void loadMoveFromConfig(){
-        try {
-            System.out.println("Loading skill configuration...");
-            File myObj = new File("./resources/skillConfig.csv");
-            Scanner myReader = new Scanner(myObj);
-            boolean isInit = true;
-            String [] temp;
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                if (!isInit){
-                    System.out.println(data);
-                    temp = data.split(";");
-                        Move tempMove = new Move(
-                                Integer.parseInt(temp[0]),
-                                this.toMoveType(temp[1]),
-                                temp[2],
-                                this.toElementType(temp[3]),
-                                Integer.parseInt(temp[4]),
-                                Integer.parseInt(temp[4]),
-                                Integer.parseInt(temp[5]),
-                                this.toTarget(temp[6])
-                        );
-                        System.out.println(tempMove.name);
-
-                }
-                isInit = false;
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred. could not configure configuration file....");
-            e.printStackTrace();
-            System.exit(200);
+        List<String> datas = LoadConfiguration.loadConfig("skillConfig.csv");
+        for (String data: datas ){
+            System.out.println(data);
         }
     }
     //TODO: ADD EXCEPTION HANDLER
