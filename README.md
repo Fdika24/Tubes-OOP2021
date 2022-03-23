@@ -23,7 +23,7 @@ Tubes OOP
 - pastikan git sudah terinstall
 - buat folder pengerjaan
 - Akses terminal dari folder pengerjaan
-- Masukan ke terminal ""
+- Masukan ke terminal "git clone https://github.com/Fdika24/Tubes-OOP2021.git"
 
 ## Cara membuat branch
 - checkout ke branch developemnt dengan mengetik di terminal "git checkout development"
