@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoadConfiguration {
-    static List<String> loadConfig(String fileName){ //filename must fileName.csv extention
+    static List<String> loadConfig(String fileName){ //filename must have fileName.csv extention
         List<String> dataList = new ArrayList<String>();
         String path = "./resources/" + fileName;
         try {

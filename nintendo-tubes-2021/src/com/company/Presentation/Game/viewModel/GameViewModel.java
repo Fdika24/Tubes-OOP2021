@@ -9,6 +9,7 @@ import com.company.model.monsters.Alchu;
 import java.util.Random;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class GameViewModel {
     private Player player = new Player();
@@ -21,10 +22,6 @@ public class GameViewModel {
     private GameViewModelOutput output;
     Random rand = new Random();
 
-    public GameViewModel() {
-
-    }
-
     public GameViewModel(GameViewModelOutput output) {
         this.output = output;
     }
@@ -35,17 +32,23 @@ public class GameViewModel {
         for (int i = 0; i < playerMonsters.size();i++) {
             System.out.print("no." + (i+1) + " ");
             System.out.println(playerMonsters.get(i).getName() + ", Status : " + playerMonsters.get(i).getMonsterState());
+            System.out.println("Health : " + playerMonsters.get(i).getMonsterStats().getHP());
         }
     }
     //MARK
     public void showPlayerCurrentMonster() {
-        System.out.println("Player Monsters :");
-        System.out.println(this.player.getMonster().getName() + ", Status : " + this.player.getMonster().getMonsterState());
+        System.out.println("Player Monsters :" + this.player.getMonster().getName());
+        System.out.println("Status : " + this.player.getMonster().getMonsterState());
+        System.out.println("Elements : " + this.player.getMonster().getElements());
+        System.out.println("HP : " + this.player.getMonster().getMonsterStats().getHP());
     }
 
     //MARK
     public void switchMonster() {
-        this.player.setUseMonster(2);
+        Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Select [Integer] : ");
+        int selection = scan.nextInt();
+        this.player.setUseMonster(selection);
     }
 
     public void attackMonster() {
@@ -55,6 +58,7 @@ public class GameViewModel {
         //TODO: ADD ELEMENT EFFECTIVENESS
         double damage = (100 * (monsterStats.getAttackPoint() / enemyStats.getDefensePoint()) + 2) * rand.nextDouble();
         enemy.didTakeDamage(damage);
+        System.out.println("You have dealt " + damage + " to enemy alchu");
         if (enemy.getMonsterState() == MonsterState.DEAD){
             this.monsterIsDead();
             return;
@@ -63,7 +67,7 @@ public class GameViewModel {
     }
 
     private void monsterIsDead() {
-        System.out.println("Seems like your monster is dead...");
+        System.out.println("Seems like you have defeated enemy monster");
         this.output.didAllMonstersDead();
 //        int avail = player.getAvailMonster();
 //        if (avail == -1){
