@@ -106,8 +106,8 @@ public class SkillsConfiguration {
                         this.toTarget(temp[7]), // ENEMY
                         new Stats(
                               0,
+                                Double.parseDouble(temp[8]),
                               0,
-                              Double.parseDouble(temp[8]),
                               0,
                               0,
                               0
