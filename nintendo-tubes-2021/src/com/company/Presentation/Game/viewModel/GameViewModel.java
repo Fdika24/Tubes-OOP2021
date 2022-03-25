@@ -58,6 +58,7 @@ public class GameViewModel {
         //TODO: ADD ELEMENT EFFECTIVENESS
         double damage = (100 * (monsterStats.getAttackPoint() / enemyStats.getDefensePoint()) + 2) * rand.nextDouble();
         enemy.didTakeDamage(damage);
+        System.out.println("You have dealt " + damage + " to enemy alchu");
         if (enemy.getMonsterState() == MonsterState.DEAD){
             this.monsterIsDead();
             return;
