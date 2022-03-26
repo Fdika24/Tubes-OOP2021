@@ -34,11 +34,13 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         while (gameGoing) {
             viewModel.showMenu();
         }
-        this.navigationController.popToRootView();
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Looks like the game has ended, click enter to continue your journey traveler");
+        //todo : wip
+        System.out.println("Looks like the game has ended, type 1 to continue your journey traveler");
 
         String selection = scan.next();
+        this.navigationController.popToRootView();
+
     }
 
     public void setViewModel(GameViewModel viewModel) {
