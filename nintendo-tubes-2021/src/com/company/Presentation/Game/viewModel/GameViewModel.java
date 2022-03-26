@@ -1,11 +1,14 @@
 package com.company.Presentation.Game.viewModel;
 
 import com.company.Presentation.Game.view.GameView;
+import com.company.model.ElementType;
 import com.company.model.monsters.MonsterModel;
 import com.company.model.monsters.MonsterState;
 import com.company.model.Player;
 import com.company.model.monsters.Stats;
 import com.company.model.monsters.Alchu;
+import com.company.utilities.ElementConfiguration;
+
 import java.util.Random;
 
 import java.util.List;
