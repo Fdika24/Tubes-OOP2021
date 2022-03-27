@@ -106,7 +106,7 @@ public class MonsterModel {
             this.affectedBy = EffectType.NONE;
             return;
         }
-        this.sleepDuration -= 0;
+        this.sleepDuration -= 1;
     }
 
 }
