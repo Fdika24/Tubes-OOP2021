@@ -7,6 +7,7 @@ import com.company.model.monsters.MonsterState;
 import com.company.model.Player;
 import com.company.model.monsters.Stats;
 import com.company.model.monsters.Alchu;
+import com.company.model.moveModel.EffectType;
 import com.company.utilities.ElementConfiguration;
 
 import java.util.Random;
@@ -55,6 +56,10 @@ public class GameViewModel {
     }
 
     public void attackMonster() {
+        if (this.player.getMonster().getMonsterAffectedBy() == EffectType.SLEEP) {
+            System.out.println("Monster is affected by Sleep");
+            return;
+        }
         Stats monsterStats = this.player.getMonster().getMonsterStats();
         Stats enemyStats = this.enemy.getMonsterStats();
         System.out.println("Enemy " + enemy.getName() + " health point : " + enemy.getMonsterStats().getHP() );
@@ -81,6 +86,7 @@ public class GameViewModel {
     }
 
     public void showMenu() {
+        this.player.getMonster().reduceSleepTime();
         this.output.didTapShowMenu();
     }
 }
