@@ -19,13 +19,11 @@ public class Alchu extends MonsterModel {
         this.setMoves();
     }
 
-    @Override
     protected void setElements() {
         this.addElement(ElementType.NORMAL);
         this.addElement(ElementType.FIRE);
     }
 
-    @Override
     protected void setMoves() {
         this.addMove(
                 new Move(
