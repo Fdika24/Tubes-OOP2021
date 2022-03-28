@@ -3,17 +3,13 @@ package com.company.Presentation.Game.view;
 import com.company.Presentation.Game.viewModel.GameViewModel;
 import com.company.Presentation.Game.viewModel.GameViewModelOutput;
 import com.company.extention.UIViewController;
-import com.company.model.Element;
-import com.company.model.ElementType;
 import com.company.utilities.ElementConfiguration;
 import com.company.utilities.MonsterConfiguration;
 import com.company.utilities.SkillsConfiguration;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class GameView extends UIViewController implements GameViewModelOutput {
-    private HashMap<ElementType, Element> elementList = new HashMap<ElementType, Element>();
     private GameViewModel viewModel;
     private boolean gameGoing = true;
 
@@ -28,21 +24,23 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         ElementConfiguration.shared.start();
 
         GameViewModel.config(this);
-        elementList.put(ElementType.FIRE, new Element(
-                ElementType.FIRE,
-                ElementType.GRASS,
-                1));
     }
 
     @Override
     protected void viewDidLoad() {
         super.viewDidLoad();
         System.out.println("Game Start!");
-        viewModel.showPlayerMonsters();
+        viewModel.showPlayerCurrentMonster();
         while (gameGoing) {
             viewModel.showMenu();
         }
+        Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        //todo : wip
+        System.out.println("Looks like the game has ended, type 1 to continue your journey traveler");
+
+        String selection = scan.next();
         this.navigationController.popToRootView();
+
     }
 
     public void setViewModel(GameViewModel viewModel) {
@@ -68,6 +66,7 @@ public class GameView extends UIViewController implements GameViewModelOutput {
             viewModel.showPlayerCurrentMonster();
             viewModel.showMenu();
         } else if (selection == 3){
+            viewModel.showPlayerMonsters();
             viewModel.switchMonster();
         } else if (selection == 4){
             viewModel.attackMonster();

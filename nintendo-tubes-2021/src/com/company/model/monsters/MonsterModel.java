@@ -1,6 +1,7 @@
 package com.company.model.monsters;
 
 import com.company.model.ElementType;
+import com.company.model.moveModel.EffectType;
 import com.company.model.moveModel.Move;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class MonsterModel {
     private Stats stats;
     private List<Move> moves;
     private MonsterState state = MonsterState.ALIVE;
+    private EffectType affectedBy = EffectType.NONE;
+    private int sleepDuration = 0;
 
     //TODO: CREATE MONSTER STATUS CONDITION
 
@@ -46,12 +49,6 @@ public class MonsterModel {
     public MonsterState getMonsterState() {
         return this.state;
     }
-    protected  void setElements(){
-
-    };
-    protected  void setMoves(){
-
-    };
 
     //MARK: SHOW MONSTER MOVES
     public void showMonsterMoves() {
@@ -78,6 +75,12 @@ public class MonsterModel {
         return this.stats;
     }
 
+    //MARK : GET HP
+    public Double getHp() {
+        return  this.stats.getHP();
+    }
+
+
     //MARK: TAKE DAMAGE
     public void didTakeDamage(double damage){
         this.stats.decreaseHp(damage);
@@ -85,4 +88,25 @@ public class MonsterModel {
             this.state = MonsterState.DEAD;
         }
     }
+
+    public EffectType getMonsterAffectedBy() {
+        return  this.affectedBy;
+    }
+
+    public void setMonsterAffectedBy(EffectType type) {
+        this.affectedBy = type;
+        if (type == EffectType.SLEEP) {
+            this.sleepDuration = 0; //randomizer from 1 to 7
+        }
+    }
+
+    //CALLED TO REDUCE SLEEP DURATION
+    public void reduceSleepTime() {
+        if (this.sleepDuration <= 0) {
+            this.affectedBy = EffectType.NONE;
+            return;
+        }
+        this.sleepDuration -= 1;
+    }
+
 }

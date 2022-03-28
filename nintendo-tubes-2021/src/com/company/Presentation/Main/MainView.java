@@ -5,12 +5,15 @@ import com.company.extention.UIViewController;
 import com.company.utilities.SkillsConfiguration;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class MainView extends UIViewController {
 
     // called when initializing view
     @Override
     protected void loadView() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         super.loadView();
         System.out.println("Loading view...");
     }
@@ -36,6 +39,8 @@ public class MainView extends UIViewController {
         } else {
             this.didSelectExitGame();
         }
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     // called when you pop the view
