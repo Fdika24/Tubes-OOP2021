@@ -7,6 +7,7 @@ public class Stats {
     private double specialAttackPoint;
     private double specialDefensePoint;
     private double speedPoint;
+    public final double initialHP;
 
     public Stats(
             double hp, double ap, double dp,
@@ -18,6 +19,7 @@ public class Stats {
         this.specialAttackPoint = sap;
         this.specialDefensePoint = sdp;
         this.speedPoint = sp;
+        this.initialHP = hp;
     }
 
     public double getHP() {
