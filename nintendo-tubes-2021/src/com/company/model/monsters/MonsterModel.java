@@ -54,13 +54,50 @@ public class MonsterModel {
     public void showMonsterMoves() {
         System.out.println(this.name + " move list :");
         for(int i = 0; i < this.getMoves().size(); i++){
-            System.out.println((i+1) + ". " + this.moves.get(i).name);
+            System.out.println((i+1) + ". " + this.moves.get(i).name + " ammunition : " + this.moves.get(i).ammunition);
         }
     }
 
     //MARK: GET MONSTER MOVES
     public List<Move> getMoves() {
         return this.moves;
+    }
+
+    //MARK: CHECK IF MOVE AVAILABLE
+    public boolean isMoveAvail(int selection) {
+        if (selection >= moves.size() || selection < 0) {
+            return  false;
+        }
+        if (moves.get(selection).ammunition == 0) {
+            System.out.println("Ammunition is 0");
+            return  false;
+        }
+        return true;
+    }
+
+    // MARK: USER MONSTER MOVE
+    public Move useMonsterMove(int selection){
+        this.moves.get(selection).ammunition -= 1;
+        return this.moves.get(selection);
+    }
+
+    public String getMoveName(int selection) {
+        String name = "";
+        try {
+            name = this.moves.get(selection).name;
+        } catch (Exception e) {
+            name = "Nothing";
+        } finally {
+            return name;
+        }
+    }
+
+    public int getMovePriority(int selection){
+        try {
+            return this.moves.get(selection).priority;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     //MARK: Get Monster Move Info
@@ -78,6 +115,11 @@ public class MonsterModel {
     //MARK : GET HP
     public Double getHp() {
         return  this.stats.getHP();
+    }
+
+    //MARK: GET BUFF
+    public void applyBuff(Stats buff){
+
     }
 
 
@@ -107,6 +149,10 @@ public class MonsterModel {
             return;
         }
         this.sleepDuration -= 1;
+    }
+
+    public boolean isMonsterAlive() {
+        return this.state == MonsterState.ALIVE;
     }
 
 }

@@ -21,6 +21,7 @@ public class LoadConfiguration {
                 }
                 isInit = false;
             }
+            myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred. could not load configuration file....");
             e.printStackTrace();

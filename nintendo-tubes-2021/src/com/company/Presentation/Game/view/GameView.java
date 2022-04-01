@@ -3,9 +3,8 @@ package com.company.Presentation.Game.view;
 import com.company.Presentation.Game.viewModel.GameViewModel;
 import com.company.Presentation.Game.viewModel.GameViewModelOutput;
 import com.company.extention.UIViewController;
+import com.company.utilities.BasicUtils;
 import com.company.utilities.ElementConfiguration;
-import com.company.utilities.MonsterConfiguration;
-import com.company.utilities.SkillsConfiguration;
 
 import java.util.Scanner;
 
@@ -16,29 +15,26 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     @Override
     protected void loadView() {
         super.loadView();
-        // load skills from csv file
-        SkillsConfiguration.shared.start();
-        // load monsters from csv file
-        MonsterConfiguration.shared.start();
         //load element from csv
         ElementConfiguration.shared.start();
 
         GameViewModel.config(this);
+
+        viewModel.viewWillLoad();
     }
 
     @Override
     protected void viewDidLoad() {
         super.viewDidLoad();
         System.out.println("Game Start!");
-        viewModel.showPlayerCurrentMonster();
+        BasicUtils.shared.loading();
         while (gameGoing) {
             viewModel.showMenu();
         }
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         //todo : wip
-        System.out.println("Looks like the game has ended, type 1 to continue your journey traveler");
-
-        String selection = scan.next();
+        System.out.println("Looks like the game has ended");
+        BasicUtils.shared.enterToContinue();
         this.navigationController.popToRootView();
 
     }
@@ -54,22 +50,22 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         System.out.println("2. Show current monster");
         System.out.println("3. Switch Monster");
         System.out.println("4. Move");
-        System.out.println("5. End turn");
+        System.out.println("5. Run");
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Select option :");
 
         int selection = scan.nextInt();  // Read user input
+        BasicUtils.shared.loading();
         if (selection == 1){
             viewModel.showPlayerMonsters();
-            viewModel.showMenu();
+            BasicUtils.shared.enterToContinue();
         } else if (selection == 2){
             viewModel.showPlayerCurrentMonster();
-            viewModel.showMenu();
         } else if (selection == 3){
             viewModel.showPlayerMonsters();
             viewModel.switchMonster();
         } else if (selection == 4){
-            viewModel.attackMonster();
+            viewModel.useMove();
         } else {
             this.gameGoing = false;
         }
@@ -77,8 +73,24 @@ public class GameView extends UIViewController implements GameViewModelOutput {
     }
 
     @Override
+    protected void viewDidFinnish() {
+        super.viewDidFinnish();
+        BasicUtils.shared.loading();
+    }
+
+    @Override
     public void didAllMonstersDead() {
-        System.out.println("You have lost!");
         this.gameGoing = false;
+    }
+
+    @Override
+    public void didSuccessDoAction() {
+        viewModel.changeWho();
+    }
+
+    @Override
+    public void didFailDoAction() {
+        System.out.println("Reloading menu...");
+        BasicUtils.shared.sleepOnly();
     }
 }

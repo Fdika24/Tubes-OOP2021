@@ -8,6 +8,11 @@ public class Stats {
     private double specialDefensePoint;
     private double speedPoint;
     public final double initialHP;
+    private final double initialAttackPoint;
+    private final double initialDefensePoint;
+    private final double initialSpecialAttackPoint;
+    private final double initialSpecialDefensePoint;
+    private final double initialSpeedPoint;
 
     public Stats(
             double hp, double ap, double dp,
@@ -19,10 +24,19 @@ public class Stats {
         this.specialAttackPoint = sap;
         this.specialDefensePoint = sdp;
         this.speedPoint = sp;
+
         this.initialHP = hp;
+        this.initialAttackPoint = ap;
+        this.initialDefensePoint = dp;
+        this.initialSpecialAttackPoint = sap;
+        this.initialSpecialDefensePoint = sdp;
+        this.initialSpeedPoint = sp;
     }
 
     public double getHP() {
+        if (this.healthPoint <= 0){
+            this.healthPoint = 0;
+        }
         return this.healthPoint;
     }
     public double getAttackPoint() {
@@ -53,5 +67,13 @@ public class Stats {
         System.out.println("Special Attack point : " + this.specialAttackPoint);
         System.out.println("Special Defense point : " + this.specialDefensePoint);
         System.out.println("Speed point : " + this.speedPoint);
+    }
+
+    public void didChangeMonster() {
+        this.attackPoint = initialAttackPoint;
+        this.specialAttackPoint = initialSpecialAttackPoint;
+        this.defensePoint = initialDefensePoint;
+        this.specialDefensePoint = initialSpecialDefensePoint;
+        this.speedPoint = initialSpeedPoint;
     }
 }
