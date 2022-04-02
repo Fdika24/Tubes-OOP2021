@@ -2,10 +2,10 @@ package com.company.Presentation.Main;
 
 import com.company.Presentation.Game.view.GameView;
 import com.company.extention.UIViewController;
-import com.company.utilities.SkillsConfiguration;
+import com.company.utilities.BasicUtils;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+
 
 public class MainView extends UIViewController {
 
@@ -16,6 +16,8 @@ public class MainView extends UIViewController {
         System.out.flush();
         super.loadView();
         System.out.println("Loading view...");
+        BasicUtils.shared.sleepOnly(2);
+        BasicUtils.shared.clearScreen();
     }
 
     // called after you're done initializing the view
@@ -23,6 +25,7 @@ public class MainView extends UIViewController {
     protected void viewDidLoad() {
         super.viewDidLoad();
         System.out.println("View has been loaded...");
+        BasicUtils.shared.sleepOnly();
         System.out.println("Welcome to Piku Monsters!");
         System.out.println("Menus : ");
         System.out.println("1. Start Game");
@@ -33,14 +36,13 @@ public class MainView extends UIViewController {
         System.out.println("Select option :");
 
         int selection = scan.nextInt();
+        BasicUtils.shared.loading();
         if (selection == 1) {
             UIViewController gameView = new GameView();
             this.navigationController.pushView(gameView);
         } else {
             this.didSelectExitGame();
         }
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 
     // called when you pop the view
