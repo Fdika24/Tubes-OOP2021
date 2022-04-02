@@ -20,7 +20,6 @@ public class SkillsConfiguration {
     }
     private final String configName = "skillConfig.txt";
     private List<Move> listOfMoves = new ArrayList<Move>();
-    public static SkillsConfiguration shared = new SkillsConfiguration();
     private Status status = Status.LOADING;
     public void start(){
         try {

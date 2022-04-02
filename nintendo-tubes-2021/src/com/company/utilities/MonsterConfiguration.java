@@ -9,15 +9,21 @@ import java.util.List;
 
 public class MonsterConfiguration {
 
-    public static MonsterConfiguration shared = new MonsterConfiguration();
+    private SkillsConfiguration skillConfig = new SkillsConfiguration();
 
     private List<MonsterModel> listOfMonster = new ArrayList<MonsterModel>();
 
     public void start() {
+        try {
+            this.skillConfig.start();
+            this.loadMoveFromConfig();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Monsters has been added to the system");
     }
     public MonsterConfiguration() {
-        this.loadMoveFromConfig();
+
     }
 
     private ElementType toElement(String str){
@@ -49,7 +55,7 @@ public class MonsterConfiguration {
                     stats
             );
             for (String id:temp[4].split(",")) {
-                monster.addMove(SkillsConfiguration.shared.getMoveByID(Integer.parseInt(id)));
+                monster.addMove(skillConfig.getMoveByID(Integer.parseInt(id)));
             }
             for (String elmt:temp[2].split(",")) {
                 monster.addElement(this.toElement(elmt));
