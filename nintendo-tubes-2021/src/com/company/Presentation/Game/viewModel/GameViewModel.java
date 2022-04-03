@@ -13,12 +13,10 @@ import com.company.model.moveModel.MoveTarget;
 import com.company.model.moveModel.MoveType;
 import com.company.utilities.BasicUtils;
 import com.company.utilities.ElementConfiguration;
+import com.company.model.ElementTypePair;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
-import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class GameViewModel {
@@ -124,6 +122,15 @@ public class GameViewModel {
         }
     }
 
+    public double getBurnValue(MonsterModel monster) {
+        if (monster.getMonsterAffectedBy() == EffectType.BURN) {
+            return 0.5;
+        }
+        else {
+            return 1;
+        }
+    }
+
     //TODO: ADD DAMAGE CALCULATION
     private double getDamage(int who) {
         double damage = 0;
@@ -132,12 +139,13 @@ public class GameViewModel {
         }
         Move pMove = players.get(who).getMonster().useMonsterMove(moveSelection[who] );
         MonsterModel pMonster = players.get(who).getMonster();
+        ElementTypePair elementTypePair = new ElementTypePair(pMove.elementType, players.get(who == 0 ? 1:0).getMonster().getElements().get(0));
         switch (pMove.moveType){
             case NORMAL:
-                damage = pMove.baseAttack * (pMonster.getMonsterStats().getAttackPoint()/players.get(who == 0 ? 1:0).getMonster().getMonsterStats().getDefensePoint());
+                damage = Math.floor((pMove.baseAttack * (pMonster.getMonsterStats().getAttackPoint()/players.get(who == 0 ? 1:0).getMonster().getMonsterStats().getDefensePoint()) + 2) * ((Math.random()/100*15)+0.85) * ElementConfiguration.shared.getEffectivityValue(elementTypePair) * getBurnValue(pMonster));
                 break;
             case SPECIAL:
-                damage = pMove.baseAttack * (pMonster.getMonsterStats().getSpecialAttackPoint()/players.get(who == 0 ? 1:0).getMonster().getMonsterStats().getSpecialDefensePoint());
+                damage = Math.floor((pMove.baseAttack * (pMonster.getMonsterStats().getSpecialAttackPoint()/players.get(who == 0 ? 1:0).getMonster().getMonsterStats().getSpecialDefensePoint()) + 2) * ((Math.random()/100*15)+0.85) * ElementConfiguration.shared.getEffectivityValue(elementTypePair) * getBurnValue(pMonster));
                 break;
             case STATS:
                 damage = 0;
