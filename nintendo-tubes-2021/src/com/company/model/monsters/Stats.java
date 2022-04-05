@@ -1,5 +1,7 @@
 package com.company.model.monsters;
 
+import com.company.model.moveModel.BuffConstant;
+
 public class Stats {
     private double healthPoint;
     private double attackPoint;
@@ -54,6 +56,7 @@ public class Stats {
     public double getSpecialDefensePoint(){
         return this.specialDefensePoint;
     }
+    public double getInitialHP() { return  this.initialHP; }
 
     public void decreaseHp(double value) {
         this.healthPoint -= value;
@@ -75,5 +78,13 @@ public class Stats {
         this.defensePoint = initialDefensePoint;
         this.specialDefensePoint = initialSpecialDefensePoint;
         this.speedPoint = initialSpeedPoint;
+    }
+
+    public void setBuff(Stats buff) {
+        this.attackPoint = BuffConstant.shared.getBuffConstant((int) buff.getAttackPoint());
+        this.defensePoint = BuffConstant.shared.getBuffConstant((int) buff.getDefensePoint());
+        this.speedPoint = BuffConstant.shared.getBuffConstant((int) buff.getSpeedPoint());
+        this.specialAttackPoint = BuffConstant.shared.getBuffConstant((int) buff.getSpecialAttackPoint());
+        this.specialDefensePoint = BuffConstant.shared.getBuffConstant((int) buff.getSpecialDefensePoint());
     }
 }

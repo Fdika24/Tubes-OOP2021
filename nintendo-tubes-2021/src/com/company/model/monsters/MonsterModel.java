@@ -3,6 +3,7 @@ package com.company.model.monsters;
 import com.company.model.ElementType;
 import com.company.model.moveModel.EffectType;
 import com.company.model.moveModel.Move;
+import com.company.utilities.BasicUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +120,7 @@ public class MonsterModel {
 
     //MARK: GET BUFF
     public void applyBuff(Stats buff){
-
+        this.stats.setBuff(buff);
     }
 
 
@@ -138,7 +139,7 @@ public class MonsterModel {
     public void setMonsterAffectedBy(EffectType type) {
         this.affectedBy = type;
         if (type == EffectType.SLEEP) {
-            this.sleepDuration = 0; //randomizer from 1 to 7
+            this.sleepDuration = BasicUtils.shared.getRandomNumber(1,7); //randomizer from 1 to 7
         }
     }
 
@@ -149,6 +150,11 @@ public class MonsterModel {
             return;
         }
         this.sleepDuration -= 1;
+    }
+
+    // get sleep duration
+    public int getSleepDuration() {
+        return  this.sleepDuration;
     }
 
     public boolean isMonsterAlive() {

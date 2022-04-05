@@ -66,25 +66,29 @@ public class GameViewModel {
     private void startAttacking() {
         MonsterModel m1 = players.get(0).getMonster();
         MonsterModel m2 = players.get(1).getMonster();
-        double dmg1 = getDamage(0);
-        double dmg2 = getDamage(1);
+        double dmg1 = 0;
+        double dmg2 = 0;
 
         // jika sama
         if (m1.getMonsterStats().getSpeedPoint() == m2.getMonsterStats().getSpeedPoint()) {
             if (m1.getMovePriority(moveSelection[0]) > m2.getMovePriority(moveSelection[1])) {
+                dmg1 = getDamage(0);
                 m2.didTakeDamage(dmg1);
                 System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0]));
                 System.out.println("Player one " + m1.getName() + " deals " + dmg1);
                 if (m2.isMonsterAlive()) {
+                    dmg2 = getDamage(1);
                     m1.didTakeDamage(dmg2);
                     System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1] ));
                     System.out.println("Player two " + m2.getName() + " deals " + dmg2);
                 }
             } else  {
+                dmg2 = getDamage(1);
                 m1.didTakeDamage(dmg2);
                 System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1]));
                 System.out.println("Player two " + m2.getName() + " deals " + dmg2);
                 if (m1.isMonsterAlive()) {
+                    dmg1 = getDamage(0);
                     m2.didTakeDamage(dmg1);
                     System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0]));
                     System.out.println("Player one " + m1.getName() + " deals " + dmg1);
@@ -93,21 +97,25 @@ public class GameViewModel {
         }
         // jika m1 besar dari m1
         else if (m1.getMonsterStats().getSpeedPoint() > m2.getMonsterStats().getSpeedPoint()) {
+            dmg1 = getDamage(0);
             m2.didTakeDamage(dmg1);
             System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0] ));
             System.out.println("Player one " + m1.getName() + " deals " + dmg1);
             if (m2.isMonsterAlive()) {
+                dmg2 = getDamage(1);
+                m1.didTakeDamage(dmg2);
                 System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1] ));
                 System.out.println("Player two " + m2.getName() + " deals " + dmg2);
-                m1.didTakeDamage(dmg2);
             }
         }
         // jika m2 > m1
         else {
+            dmg2 = getDamage(1);
             System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1] ));
             System.out.println("Player two " + m2.getName() + " deals " + dmg2);
             m1.didTakeDamage(dmg2);
             if (m1.isMonsterAlive()) {
+                dmg1 = getDamage(0);
                 m2.didTakeDamage(dmg1);
                 System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0]));
                 System.out.println("Player one " + m1.getName() + " deals " + dmg1);
@@ -117,9 +125,29 @@ public class GameViewModel {
         if (m1.getMonsterAffectedBy() != EffectType.NONE){
             System.out.println("Player one " + m1.getName() + " affected by " + m1.getMonsterAffectedBy());
         }
+        getEffectValue(m1);
         if (m2.getMonsterAffectedBy() != EffectType.NONE) {
             System.out.println("Player two " + m2.getName() + " affected by " + m2.getMonsterAffectedBy());
         }
+        getEffectValue(m2);
+    }
+
+    private void getEffectValue(MonsterModel monster) {
+        double dmg = 0;
+        switch (monster.getMonsterAffectedBy()) {
+            case BURN:
+                dmg = monster.getMonsterStats().getInitialHP()/8;
+                System.out.println("BURN DAMAGE : " +  dmg);
+                break;
+            case POISON:
+                dmg = monster.getMonsterStats().getInitialHP()/16;
+                System.out.println("POISON DAMAGE : " +  dmg);
+                break;
+            default :
+                dmg = 0;
+                break;
+        }
+        monster.getMonsterStats().decreaseHp(dmg);
     }
 
     public double getBurnValue(MonsterModel monster) {
@@ -151,7 +179,6 @@ public class GameViewModel {
                 damage = 0;
                 if (pMove.target == MoveTarget.OWN) {
                     players.get(who).getMonster().applyBuff(pMove.getMoveEffect());
-                    // bonus, self something
                 } else  {
                     players.get(who == 0 ? 1:0).getMonster().setMonsterAffectedBy(pMove.effectType);
                 }
@@ -196,6 +223,18 @@ public class GameViewModel {
     }
 
     public void useMove() {
+        if ( players.get(who -1).getMonster().getMonsterAffectedBy() == EffectType.SLEEP){
+            System.out.println("Cannot use move, monster is affected by sleep for " + players.get(who -1).getMonster().getSleepDuration() + " round");
+            BasicUtils.shared.enterToContinue();
+            this.output.didTapShowMenu();
+            return;
+        }
+        if (players.get(who - 1).getMonster().getMonsterAffectedBy() == EffectType.PARALYZE) {
+            System.out.println("Cannot use move, monster is affected by paralyze for 1 round");
+            BasicUtils.shared.enterToContinue();
+            this.output.didTapShowMenu();
+            return;
+        }
         players.get(who -1).getMonster().showMonsterMoves();
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Select option :");
@@ -214,6 +253,10 @@ public class GameViewModel {
     private void showHealths() {
         if (players.get(0).getMonster().isMonsterAlive()) {
             System.out.println("Player one " + players.get(0).getMonster().getName() + " hp : " + players.get(0).getMonster().getHp());
+            if (players.get(0).getMonster().getMonsterAffectedBy() != EffectType.NONE){
+                System.out.printf(players.get(0).getMonster().getName() + " is affect by " + players.get(0).getMonster().getMonsterAffectedBy());
+                System.out.println(players.get(0).getMonster().getMonsterAffectedBy() == EffectType.SLEEP ? (" for the next " + players.get(0).getMonster().getSleepDuration() + " round") : "");
+            }
         } else {
             System.out.println("Player one " + players.get(0).getMonster().getName() + " is Dead");
             if (players.get(0).isMonsterAllDead()) {
@@ -225,6 +268,10 @@ public class GameViewModel {
 
         if (players.get(1).getMonster().isMonsterAlive()) {
             System.out.println("Player two " + players.get(1).getMonster().getName() + " hp :  " + players.get(1).getMonster().getHp());
+            if (players.get(1).getMonster().getMonsterAffectedBy() != EffectType.NONE){
+                System.out.printf(players.get(1).getMonster().getName() + " is affect by " + players.get(1).getMonster().getMonsterAffectedBy());
+                System.out.println(players.get(1).getMonster().getMonsterAffectedBy() == EffectType.SLEEP ? ("for the next " + players.get(1).getMonster().getSleepDuration() + " round") : "");
+            }
         } else {
             System.out.println("Player two " + players.get(1).getMonster().getName() + " is Dead");
             if (players.get(1).isMonsterAllDead()) {
@@ -240,11 +287,23 @@ public class GameViewModel {
         this.output.didAllMonstersDead();
     }
 
+    private void deleteEffect() {
+        MonsterModel m1 = players.get(0).getMonster();
+        if (m1.getMonsterAffectedBy() == EffectType.PARALYZE) {
+            m1.setMonsterAffectedBy(EffectType.NONE);
+        }
+        MonsterModel m2 = players.get(1).getMonster();
+        if (m2.getMonsterAffectedBy() == EffectType.PARALYZE) {
+            m2.setMonsterAffectedBy(EffectType.NONE);
+        }
+    }
+
     public void showMenu() {
         if (who == 3) {
             endAllTurn();
-            this.changeWho();
             this.showHealths();
+            this.deleteEffect();
+            this.changeWho();
             BasicUtils.shared.enterToContinue();
             return;
         }

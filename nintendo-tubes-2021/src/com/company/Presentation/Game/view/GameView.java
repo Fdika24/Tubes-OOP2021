@@ -50,7 +50,8 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         System.out.println("2. Show current monster");
         System.out.println("3. Switch Monster");
         System.out.println("4. Move");
-        System.out.println("5. Run");
+        System.out.println("5. Continue");
+        System.out.println("0. Run");
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Select option :");
 
@@ -66,7 +67,10 @@ public class GameView extends UIViewController implements GameViewModelOutput {
             viewModel.switchMonster();
         } else if (selection == 4){
             viewModel.useMove();
-        } else {
+        } else if (selection == 5) {
+            this.didSuccessDoAction();
+        }
+        else {
             this.gameGoing = false;
         }
 
