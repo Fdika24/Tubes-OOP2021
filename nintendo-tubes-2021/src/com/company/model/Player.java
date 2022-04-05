@@ -16,9 +16,9 @@ public class Player {
         MonsterConfiguration config = new MonsterConfiguration();
         config.start();
         // add randomizer
-        this.monsters.add(config.getMonsterRandom());
-        this.monsters.add(config.getMonsterRandom());
-        this.monsters.add(config.getMonsterRandom());
+        this.monsters.add(config.getMonsterByID(1));
+        this.monsters.add(config.getMonsterByID(2));
+        this.monsters.add(config.getMonsterByID(3));
     }
 
     public int getAvailMonster() {
@@ -37,7 +37,7 @@ public class Player {
             System.out.println("Cannot use Monster, you are currently using " + this.getMonster().getName());
             return false;
         }
-        if (use > monsters.size()-1 || use < 0) { // next condition is when monster is dead
+        if (use > monsters.size() || use < 0) { // next condition is when monster is dead
             System.out.println("Cannot use Monster or Monster is not available in your index");
             return false;
         }

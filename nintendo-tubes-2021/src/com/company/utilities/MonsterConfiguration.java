@@ -12,7 +12,6 @@ public class MonsterConfiguration {
     private SkillsConfiguration skillConfig = new SkillsConfiguration();
 
     private List<MonsterModel> listOfMonster = new ArrayList<MonsterModel>();
-    private List<Integer> temp = new ArrayList<Integer>();
 
     public void start() {
         try {
@@ -71,12 +70,7 @@ public class MonsterConfiguration {
     }
     public MonsterModel getMonsterRandom() {
         //TODO: ADD RANDOMIZER
-        int random = BasicUtils.shared.getRandomNumber(0,listOfMonster.size() - 1);
-        while (temp.contains(random)) {
-            random = BasicUtils.shared.getRandomNumber(0,listOfMonster.size() - 1);
-        }
-        temp.add(random);
-        return this.listOfMonster.get(random);
+        return this.listOfMonster.get(0);
     }
 
 
