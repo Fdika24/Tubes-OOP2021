@@ -48,13 +48,6 @@ public class ElementConfiguration {
     }*/
 
     public double getEffectivityValue(ElementTypePair elementPair) {
-        double effectivity = 1;
-        try {
-            effectivity = this.elements.get(elementPair);
-        } catch (Exception e){
-            effectivity = 1;
-        } finally {
-           return  effectivity;
-        }
+        return this.elements.get(elementPair);
     }
 }
