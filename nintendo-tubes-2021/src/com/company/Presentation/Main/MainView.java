@@ -29,7 +29,7 @@ public class MainView extends UIViewController {
         System.out.println("Welcome to Piku Monsters!");
         System.out.println("Menus : ");
         System.out.println("1. Start Game");
-        System.out.println("2. Start Game");
+        System.out.println("2. How to Play");
         System.out.println("3. Exit Game");
 
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
@@ -40,7 +40,12 @@ public class MainView extends UIViewController {
         if (selection == 1) {
             UIViewController gameView = new GameView();
             this.navigationController.pushView(gameView);
-        } else {
+        }
+        else if (selection == 2) {
+            this.howToPlay();
+            this.viewDidLoad();
+        }
+        else {
             this.didSelectExitGame();
         }
     }
@@ -57,6 +62,19 @@ public class MainView extends UIViewController {
     protected void viewDidFinnish() {
         super.viewDidFinnish();
         System.out.println("View has been removed from stack...");
+    }
+
+    protected void howToPlay() {
+        System.out.println("==How to Play==");
+        System.out.println("1. Pilih opsi Start Game untuk memulai permainan dan Exit Game untuk keluar dari permainan");
+        System.out.println("2. Lihat monster yang sedang dipakai menggunakan Show current monster");
+        System.out.println("3. Jika ingin mengganti monster yang dipakai, pilih Switch Monster");
+        System.out.println("4. Daftar monster yang dapat dipilih bisa dilihat di Show Monsters");
+        System.out.println("5. Gunakan Move untuk menyerang monster lawan");
+        System.out.println("6. Pilih opsi Continue untuk melanjutkan ke giliran pemain selanjutnya");
+        System.out.println("7. Jika ingin mundur dari lawan (keluar dari gane), gunakan opsi Run");
+        System.out.println("Selamat bermain!");
+        BasicUtils.shared.enterToContinue();
     }
 
     private void didSelectExitGame() {
