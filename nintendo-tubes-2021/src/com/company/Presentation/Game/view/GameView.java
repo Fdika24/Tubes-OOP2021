@@ -17,7 +17,7 @@ public class GameView extends UIViewController implements GameViewModelOutput {
         super.loadView();
         //load element from csv
         ElementConfiguration.shared.start();
-
+        System.out.println("makan bang");
         GameViewModel.config(this);
 
         viewModel.viewWillLoad();

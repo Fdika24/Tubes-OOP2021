@@ -27,6 +27,7 @@ public class GameViewModel {
     public void viewWillLoad() {
         players.get(0).init();
         players.get(1).init();
+        System.out.println("view will load");
     }
 
     public static void config(GameView view) {
