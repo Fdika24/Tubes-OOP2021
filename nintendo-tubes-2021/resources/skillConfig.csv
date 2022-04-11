@@ -9,3 +9,5 @@ id,moveType;name;elementType;accuracy;priority;ammunition;target;effect
 8;NORMAL;Water Tail;WATER;90;2;50;ENEMY;56
 9;STATUS;Cotton Spore;GRASS;100;2;11;ENEMY;POISON;0,0,0,0,0,-2
 10;STATUS;Calm Mind;NORMAL;95;1;3;OWN;-;0,0,0,1,1,0
+11;STATUS;Bulk Up;NORMAL;98;1;7;OWN;-;0,1,1,1,1,0
+12;STATUS;Swords Dance;FIRE;90;2;10;OWN;-;0,2,0,2,0,0
