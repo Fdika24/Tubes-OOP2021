@@ -4,6 +4,7 @@ import com.company.Presentation.Game.view.GameView;
 import com.company.extention.UIViewController;
 import com.company.utilities.BasicUtils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -24,6 +25,7 @@ public class MainView extends UIViewController {
     @Override
     protected void viewDidLoad() {
         super.viewDidLoad();
+        int selection;
         System.out.println("View has been loaded...");
         BasicUtils.shared.sleepOnly();
         System.out.println("Welcome to Piku Monsters!");
@@ -35,18 +37,27 @@ public class MainView extends UIViewController {
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Select option :");
 
-        int selection = scan.nextInt();
-        BasicUtils.shared.loading();
-        if (selection == 1) {
-            UIViewController gameView = new GameView();
-            this.navigationController.pushView(gameView);
+        try {
+            selection = scan.nextInt();
+            BasicUtils.shared.loading();
+            if (selection == 1) {
+                UIViewController gameView = new GameView();
+                this.navigationController.pushView(gameView);
+            }
+            else if (selection == 2) {
+                this.howToPlay();
+                this.viewDidLoad();
+            }
+            else {
+                this.didSelectExitGame();
+            }
         }
-        else if (selection == 2) {
-            this.howToPlay();
+        catch (InputMismatchException e) {
+            System.out.println("\nThe input should be integer. Try again.\n");
             this.viewDidLoad();
         }
-        else {
-            this.didSelectExitGame();
+        finally {
+            scan.close();
         }
     }
 
