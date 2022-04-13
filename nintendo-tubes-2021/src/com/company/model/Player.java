@@ -19,6 +19,9 @@ public class Player {
         this.monsters.add(config.getMonsterRandom());
         this.monsters.add(config.getMonsterRandom());
         this.monsters.add(config.getMonsterRandom());
+        this.monsters.add(config.getMonsterRandom());
+        this.monsters.add(config.getMonsterRandom());
+        this.monsters.add(config.getMonsterRandom());
     }
 
     public int getAvailMonster() {
