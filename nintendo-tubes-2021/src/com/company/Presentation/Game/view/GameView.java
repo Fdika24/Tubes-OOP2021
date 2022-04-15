@@ -6,6 +6,7 @@ import com.company.extention.UIViewController;
 import com.company.utilities.BasicUtils;
 import com.company.utilities.ElementConfiguration;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameView extends UIViewController implements GameViewModelOutput {
@@ -64,16 +65,27 @@ public class GameView extends UIViewController implements GameViewModelOutput {
             viewModel.showPlayerCurrentMonster();
         } else if (selection == 3){
             viewModel.showPlayerMonsters();
-            viewModel.switchMonster();
+            try {
+                viewModel.switchMonster();
+            }
+            catch (InputMismatchException e) {
+                System.out.println("\nThe input should be integer. Try again.\n");
+                viewModel.switchMonster();
+            }
         } else if (selection == 4){
-            viewModel.useMove();
+            try {
+                viewModel.useMove();
+            }
+            catch (InputMismatchException e) {
+                System.out.println("\nThe input should be integer. Try again.\n");
+                viewModel.useMove();
+            }
         } else if (selection == 5) {
             this.didSuccessDoAction();
         }
         else {
             this.gameGoing = false;
         }
-
     }
 
     @Override
