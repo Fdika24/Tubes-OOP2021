@@ -77,6 +77,13 @@ public class MonsterModel {
         System.out.println(this.name + " move list :");
         for(int i = 0; i < this.getMoves().size(); i++){
             System.out.println((i+1) + ". " + this.moves.get(i).name + " ammunition : " + this.moves.get(i).ammunition);
+            if (this.moves.get(i).moveType == MoveType.STATS) {
+                System.out.println("   status condition : " + this.moves.get(i).effectType);
+                this.moves.get(i).getMoveEffect().showStatsInfo();
+            }
+            else {
+                System.out.println("   base power : " + this.moves.get(i).baseAttack);
+            }
         }
     }
 
