@@ -3,6 +3,8 @@ package com.company.model.monsters;
 import com.company.model.ElementType;
 import com.company.model.moveModel.EffectType;
 import com.company.model.moveModel.Move;
+import com.company.model.moveModel.MoveTarget;
+import com.company.model.moveModel.MoveType;
 import com.company.utilities.BasicUtils;
 
 import java.util.ArrayList;
@@ -31,6 +33,25 @@ public class MonsterModel {
         this.elements = new ArrayList<ElementType>();
         this.stats = stats;
         this.moves = new ArrayList<Move>();
+        moves.add(new Move(
+                -999,
+                MoveType.NORMAL,
+                "Default Attack",
+                ElementType.DEFAULT,
+                9999,
+                10,
+                9999999,
+                MoveTarget.ENEMY,
+                new Stats(
+                        0,
+                        10,
+                        0,
+                        0,
+                        0,
+                        0
+                ),
+                EffectType.NONE
+        ));
     }
 
     //MARK :

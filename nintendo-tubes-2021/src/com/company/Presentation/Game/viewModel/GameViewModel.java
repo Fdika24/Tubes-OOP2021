@@ -27,6 +27,7 @@ public class GameViewModel {
     public void viewWillLoad() {
         players.get(0).init();
         players.get(1).init();
+        System.out.println("view will load");
     }
 
     public static void config(GameView view) {
@@ -212,8 +213,13 @@ public class GameViewModel {
     //MARK
     public void switchMonster() {
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Input -1 to cancel");
         System.out.println("Select Monster [Integer] : ");
         int selection = scan.nextInt();
+        if (selection == -1){
+            BasicUtils.shared.enterToContinue();
+            return;
+        }
         if (this.players.get(who - 1).setUseMonster(selection - 1)) {
             BasicUtils.shared.enterToContinue();
             this.output.didSuccessDoAction();
@@ -237,9 +243,14 @@ public class GameViewModel {
         }
         players.get(who -1).getMonster().showMonsterMoves();
         Scanner scan = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Input -1 to cancel");
         System.out.println("Select option :");
 
         int selection = scan.nextInt();
+        if (selection == -1){
+            BasicUtils.shared.enterToContinue();
+            return;
+        }
         if (players.get(who -1).getMonster().isMoveAvail(selection - 1)) {
             this.moveSelection[who - 1] = selection -1;
         } else {

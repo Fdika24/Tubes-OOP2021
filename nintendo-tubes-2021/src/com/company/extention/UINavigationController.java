@@ -6,6 +6,7 @@ public class UINavigationController {
     private static Stack<UIViewController> navigationStack = new Stack<UIViewController>();
     public UINavigationController(UIViewController initialView) {
         navigationStack.push(initialView);
+        System.out.println("somemee");
         this.instantiateView();
     }
     public void setInitialView(UIViewController initialView) {
@@ -24,6 +25,7 @@ public class UINavigationController {
         navigationStack.peek().navigationController = this;
         navigationStack.peek().loadView();
         navigationStack.peek().viewDidLoad();
+
     }
     /*
     what        : this view pop your current view and navigate back to your previous view initial state,
