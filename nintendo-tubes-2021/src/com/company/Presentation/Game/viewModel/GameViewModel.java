@@ -211,6 +211,12 @@ public class GameViewModel {
         System.out.println("Status : " + this.players.get(who - 1).getMonster().getMonsterState());
         System.out.println("Elements : " + this.players.get(who - 1).getMonster().getElements());
         System.out.println("HP : " + this.players.get(who - 1).getMonster().getMonsterStats().getHP());
+        System.out.println("Attack : " + this.players.get(who - 1).getMonster().getMonsterStats().getAttackPoint());
+        System.out.println("Defense : " + this.players.get(who - 1).getMonster().getMonsterStats().getDefensePoint());
+        System.out.println("Sp. Attack : " + this.players.get(who - 1).getMonster().getMonsterStats().getSpecialAttackPoint());
+        System.out.println("Sp. Defense : " + this.players.get(who - 1).getMonster().getMonsterStats().getSpecialDefensePoint());
+        System.out.println("Speed : " + this.players.get(who - 1).getMonster().getMonsterStats().getSpeedPoint());
+        this.players.get(who - 1).getMonster().getMonsterMoveInfo();
         BasicUtils.shared.enterToContinue();
     }
 
