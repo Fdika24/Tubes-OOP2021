@@ -41,6 +41,14 @@ public class Stats {
         }
         return this.healthPoint;
     }
+
+    public void setHP(double value) {
+        this.healthPoint = value;
+        if (this.healthPoint > this.initialHP) {
+            this.healthPoint = this.initialHP;
+        }
+    }
+
     public double getAttackPoint() {
         return this.attackPoint;
     }

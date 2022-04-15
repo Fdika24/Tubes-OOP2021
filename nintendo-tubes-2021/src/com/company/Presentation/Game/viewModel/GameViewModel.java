@@ -178,7 +178,12 @@ public class GameViewModel {
             case STATS:
                 damage = 0;
                 if (pMove.target == MoveTarget.OWN) {
-                    players.get(who).getMonster().applyBuff(pMove.getMoveEffect());
+                    if (pMove.name == "Heal") {
+                        players.get(who).getMonster().getMonsterStats().setHP(pMove.getMoveEffect().getHP());
+                    }
+                    else {
+                        players.get(who).getMonster().applyBuff(pMove.getMoveEffect());
+                    }
                 } else  {
                     players.get(who == 0 ? 1:0).getMonster().setMonsterAffectedBy(pMove.effectType);
                 }
