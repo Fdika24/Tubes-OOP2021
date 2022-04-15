@@ -69,6 +69,8 @@ public class GameViewModel {
         MonsterModel m2 = players.get(1).getMonster();
         double dmg1 = 0;
         double dmg2 = 0;
+        Move pM1= players.get(0).getMonster().useMonsterMove(moveSelection[0] );
+        Move pM2= players.get(1).getMonster().useMonsterMove(moveSelection[1] );
 
         // jika sama
         if (m1.getMonsterStats().getSpeedPoint() == m2.getMonsterStats().getSpeedPoint()) {
@@ -182,6 +184,7 @@ public class GameViewModel {
                     players.get(who).getMonster().applyBuff(pMove.getMoveEffect());
                 } else  {
                     players.get(who == 0 ? 1:0).getMonster().setMonsterAffectedBy(pMove.effectType);
+                    players.get(who == 0 ? 1:0).getMonster().applyBuff(pMove.getMoveEffect());
                 }
                 break;
         }

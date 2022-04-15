@@ -86,5 +86,10 @@ public class Stats {
         this.speedPoint = this.initialSpeedPoint * BuffConstant.shared.getBuffConstant((int) buff.getSpeedPoint());
         this.specialAttackPoint = this.initialSpecialAttackPoint * BuffConstant.shared.getBuffConstant((int) buff.getSpecialAttackPoint());
         this.specialDefensePoint = this.initialSpecialDefensePoint * BuffConstant.shared.getBuffConstant((int) buff.getSpecialDefensePoint());
+        double increaseHp =  (this.healthPoint + buff.getHP()) > this.initialHP ? (this.healthPoint + buff.getHP() - this.initialHP) : buff.getHP();
+        if (increaseHp > 0){
+            this.healthPoint += increaseHp;
+            System.out.println("added " + increaseHp + " health point");
+        }
     }
 }
