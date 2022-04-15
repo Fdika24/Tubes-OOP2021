@@ -81,10 +81,10 @@ public class Stats {
     }
 
     public void setBuff(Stats buff) {
-        this.attackPoint = BuffConstant.shared.getBuffConstant((int) buff.getAttackPoint());
-        this.defensePoint = BuffConstant.shared.getBuffConstant((int) buff.getDefensePoint());
-        this.speedPoint = BuffConstant.shared.getBuffConstant((int) buff.getSpeedPoint());
-        this.specialAttackPoint = BuffConstant.shared.getBuffConstant((int) buff.getSpecialAttackPoint());
-        this.specialDefensePoint = BuffConstant.shared.getBuffConstant((int) buff.getSpecialDefensePoint());
+        this.attackPoint = this.initialAttackPoint * BuffConstant.shared.getBuffConstant((int) buff.getAttackPoint());
+        this.defensePoint = this.initialDefensePoint * BuffConstant.shared.getBuffConstant((int) buff.getDefensePoint());
+        this.speedPoint = this.initialSpeedPoint * BuffConstant.shared.getBuffConstant((int) buff.getSpeedPoint());
+        this.specialAttackPoint = this.initialSpecialAttackPoint * BuffConstant.shared.getBuffConstant((int) buff.getSpecialAttackPoint());
+        this.specialDefensePoint = this.initialSpecialDefensePoint * BuffConstant.shared.getBuffConstant((int) buff.getSpecialDefensePoint());
     }
 }
