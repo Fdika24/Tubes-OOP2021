@@ -54,26 +54,27 @@ public class GameViewModel {
         this.moveSelection[1] = -1;
     }
 
-    private void playerTwoAction(MonsterModel m2, double dmg2) {
-        System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1] ));
-        System.out.println("Player two " + m2.getName() + " deals " + dmg2);
-    }
-
-    private void playerOneAction(MonsterModel m1, double dmg1) {
-        System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0]));
-        System.out.println("Player one " + m1.getName() + " deals " + dmg1);
-    }
-
     private void startAttacking() {
         MonsterModel m1 = players.get(0).getMonster();
         MonsterModel m2 = players.get(1).getMonster();
         double dmg1 = 0;
         double dmg2 = 0;
-        Move pM1= players.get(0).getMonster().useMonsterMove(moveSelection[0] );
-        Move pM2= players.get(1).getMonster().useMonsterMove(moveSelection[1] );
 
-        // jika sama
-        if (m1.getMonsterStats().getSpeedPoint() == m2.getMonsterStats().getSpeedPoint()) {
+        if (moveSelection[1] == -1 && moveSelection[0] == -1) {
+            System.out.println("No move were selected by both players");
+        }
+        else if (moveSelection[1] == -1) {
+            dmg1 = getDamage(0);
+            m2.didTakeDamage(dmg1);
+            System.out.println("Player one " + m1.getName() + " use " + m1.getMoveName(moveSelection[0]));
+            System.out.println("Player one " + m1.getName() + " deals " + dmg1);
+        } else if (moveSelection[0] == -1) {
+            dmg2 = getDamage(1);
+            m1.didTakeDamage(dmg2);
+            System.out.println("Player two " + m2.getName() + " use " + m2.getMoveName(moveSelection[1] ));
+            System.out.println("Player two " + m2.getName() + " deals " + dmg2);
+        }
+        else if (m1.getMonsterStats().getSpeedPoint() == m2.getMonsterStats().getSpeedPoint()) {
             if (m1.getMovePriority(moveSelection[0]) > m2.getMovePriority(moveSelection[1])) {
                 dmg1 = getDamage(0);
                 m2.didTakeDamage(dmg1);
